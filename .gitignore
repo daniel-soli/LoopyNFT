@@ -15,6 +15,7 @@
 
 # AppSettings
 appsettings.json
+appsettings.*.json
 
 # Mono auto generated files
 mono_crash.*

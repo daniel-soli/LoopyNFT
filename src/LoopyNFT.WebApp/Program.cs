@@ -1,13 +1,14 @@
 using ElCamino.AspNetCore.Identity.AzureTable.Model;
 using LoopyNFT.WebApp.Areas.Identity;
 using LoopyNFT.WebApp.Data;
+using LoopyNFT.WebApp.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
-using IdentityUser = ElCamino.AspNetCore.Identity.AzureTable.Model.IdentityUser;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //    options.(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddAzureTableStores<ApplicationDbContext>(new Func<IdentityConfiguration>(() =>
     {
         IdentityConfiguration idconfig = new IdentityConfiguration();
@@ -30,11 +31,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     }))
     .AddDefaultTokenProviders()
     .AddDefaultUI()
-    .AddUserManager<UserManager<IdentityUser>>()
+    .AddUserManager<UserManager<AppUser>>()
     .CreateAzureTablesIfNotExists<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<AppUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();

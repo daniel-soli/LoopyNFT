@@ -1,5 +1,6 @@
-﻿@using IdentityUser = ElCamino.AspNetCore.Identity.AzureTable.Model.IdentityUser
-@inject SignInManager<IdentityUser> SignInManager
+﻿@using LoopyNFT.WebApp.Entities
+
+@inject SignInManager<AppUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

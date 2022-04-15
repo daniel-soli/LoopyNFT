@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
-
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +37,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<AppUser>>();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 

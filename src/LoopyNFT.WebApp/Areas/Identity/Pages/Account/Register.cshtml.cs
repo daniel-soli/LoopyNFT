@@ -62,6 +62,11 @@ namespace LoopyNFT.WebApp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            //[DataType(DataType.Text)]
+            //[StringLength(20, ErrorMessage = "The UserName must not be longer than {1} characters long.")]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
         }
 
         public async Task OnGetAsync(string? returnUrl = null)
@@ -76,7 +81,7 @@ namespace LoopyNFT.WebApp.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email };
+                var user = new AppUser { LocalUserName = Input.UserName, UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

@@ -20,6 +20,16 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Input.TwitterAccount"></label>
+                <input asp-for="Input.TwitterAccount" class="form-control" />
+                <span asp-validation-for="Input.TwitterAccount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.WalletAddress"></label>
+                <input asp-for="Input.WalletAddress" class="form-control" />
+                <span asp-validation-for="Input.WalletAddress" class="text-danger"></span>
+            </div>
             <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>

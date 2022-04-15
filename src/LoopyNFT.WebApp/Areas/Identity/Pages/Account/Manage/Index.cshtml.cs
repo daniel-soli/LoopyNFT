@@ -37,18 +37,29 @@ namespace LoopyNFT.WebApp.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Wallet Address")]
+            public string WalletAddress { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Twitter Account")]
+            public string TwitterAccount { get; set; }
         }
 
         private async Task LoadAsync(AppUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
+            var userFull = await _userManager.FindByIdAsync(user.Id);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                TwitterAccount = userFull.TwitterAcount,
+                WalletAddress = userFull.WalletAddress
             };
         }
 
@@ -84,10 +95,19 @@ namespace LoopyNFT.WebApp.Areas.Identity.Pages.Account.Manage
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
             }
+            if (Input.TwitterAccount != user.TwitterAcount)
+            {
+                user.TwitterAcount = Input.TwitterAccount;
+            }
+            if (Input.WalletAddress != user.WalletAddress)
+            {
+                user.WalletAddress = Input.WalletAddress;
+            }
+            await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

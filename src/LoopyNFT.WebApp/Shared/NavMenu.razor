@@ -2,5 +2,9 @@
     <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
     <MudNavLink Href="/nfts" Match="NavLinkMatch.Prefix">NFTs</MudNavLink>
     <MudNavLink Href="/artists"  Match="NavLinkMatch.Prefix">Artists</MudNavLink>
-    <MudNavLink Href="/about"  Match="NavLinkMatch.Prefix">About</MudNavLink>
+    <AuthorizeView>
+        <Authorized>
+            <MudNavLink Href="/AddCollection"  Match="NavLinkMatch.Prefix">Add Collection</MudNavLink>
+        </Authorized>
+    </AuthorizeView>
 </MudNavMenu>

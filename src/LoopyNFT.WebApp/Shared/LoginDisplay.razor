@@ -1,9 +1,16 @@
-﻿<AuthorizeView>
+﻿@using LoopyNFT.WebApp.Services
+@inject IAccountService AccountService
+<AuthorizeView>
     <Authorized>
         <a href="Identity/Account/Manage">@context.User.Identity?.Name!</a>
-        <form method="post" action="Identity/Account/LogOut">
-            <button type="submit" class="nav-link btn btn-link">Log out</button>
+        <MudTooltip>
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/" method="post">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
         </form>
+        <form method="post" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/">
+            <MudIconButton Icon="@Icons.Material.Rounded.Logout" ButtonType="ButtonType.Submit"/>
+        </form>
+        </MudTooltip>
     </Authorized>
     <NotAuthorized>
         <MudTooltip Duration="1000" Text="Register User">
@@ -14,3 +21,10 @@
         </MudTooltip>
     </NotAuthorized>
 </AuthorizeView>
+@code {
+    public async Task LogOut()
+    {
+        await AccountService.Logout();
+        StateHasChanged();
+    }
+}

@@ -1,9 +1,12 @@
-﻿@inherits LayoutComponentBase
+﻿@using LoopyNFT.WebApp.Dialogs
+@inherits LayoutComponentBase
+
+@inject IDialogService DialogService
 
 <PageTitle>LoopyNFT.WebApp</PageTitle>
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
 <MudDialogProvider/>
-<MudSnackbarProvider/>
+<MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -14,6 +17,9 @@
                      Icon="@Icons.Material.Rounded.DarkMode" Title="Dark"
                      ToggledIcon="@Icons.Material.Rounded.LightMode" ToggledTitle="Light"/>
         </MudTooltip>
+		<MudButton OnClick="OpenDialog" Variant="Variant.Filled" Color="Color.Primary">
+			Options Dialog
+		</MudButton>
         <LoginDisplay />
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
     </MudAppBar>
@@ -34,6 +40,11 @@
     bool _drawerOpen = true;
     private MudTheme _theme = new();
     private bool _isDarkMode = true;
+
+	private void OpenDialog()
+    {
+        DialogService.Show<LoginDialog>("Login Dialog");
+    }
 
     void DrawerToggle()
     {

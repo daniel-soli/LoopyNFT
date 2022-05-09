@@ -16,12 +16,16 @@ public class TableService : ITableService
 
     public TableService(IConfiguration configuration, IMapper mapper)
     {
+        
         _configuration = configuration;
         _mapper = mapper;
-        _tableClient = new TableClient(
-            new Uri("https://loopynftstorage.table.core.windows.net/"), 
-            _configuration.GetSection("StorageAccount:TableName").Value, 
-            new TableSharedKeyCredential("loopynftstorage", "d9KIP12BuWkMBZtvDbfl85l4d3YQoTxPM2RAJisW6wVv51r1HWUwZGSF2tqtokYKe7NJa/pS6YxJj9DgivuH0Q=="));
+
+        var uri = new Uri(_configuration.GetSection("StorageAccount:Uri").Value);
+        var tableName = _configuration.GetSection("StorageAccount:TableName").Value;
+        var sharedKey = new TableSharedKeyCredential("loopnftstorage", _configuration.GetSection("StorageAccount:SharedKey").Value);
+        _tableClient = new TableClient(uri, 
+            tableName, 
+            sharedKey);
     }
 
     public async Task<List<CollectionDto>> GetAllCollections()

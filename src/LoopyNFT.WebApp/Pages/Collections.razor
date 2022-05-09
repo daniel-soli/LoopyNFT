@@ -1,0 +1,9 @@
+﻿@page "/Collections"
+
+@if (CollectionList != null)
+{
+    foreach(var collection in CollectionList)
+    {
+        <MudLink Href="@("Collections/" + collection.Id)">@collection.Name</MudLink>
+    }
+}

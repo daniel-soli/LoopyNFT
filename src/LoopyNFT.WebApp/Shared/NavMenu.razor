@@ -1,10 +1,11 @@
 ﻿<MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    <MudNavLink Href="/nfts" Match="NavLinkMatch.Prefix">NFTs</MudNavLink>
-    <MudNavLink Href="/artists"  Match="NavLinkMatch.Prefix">Artists</MudNavLink>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Filled.Dashboard">Dashboard</MudNavLink>
+    <MudNavLink Href="/Collections" Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.ImageSearch">NFTs</MudNavLink>
+    <MudNavLink Href="/artists"  Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.People">Artists</MudNavLink>
     <AuthorizeView>
         <Authorized>
-            <MudNavLink Href="/AddCollection"  Match="NavLinkMatch.Prefix">Add Collection</MudNavLink>
+            <MudText Typo="Typo.h6" Class="px-4">Artist Menu</MudText>
+            <MudNavLink Href="/AddCollection"  Match="NavLinkMatch.Prefix" Icon="@Icons.Filled.Add">Add Collection</MudNavLink>
         </Authorized>
     </AuthorizeView>
 </MudNavMenu>

@@ -47,7 +47,7 @@ public class TableService : ITableService
 
     public async Task<CollectionDto> GetCollectionAsync(string id)
     {
-        if (string.IsNullOrWhiteSpace(id) && Guid.TryParse(id, out Guid guid))
+        if (!string.IsNullOrWhiteSpace(id) && Guid.TryParse(id, out Guid guid))
         {
             var entity = _tableClient.Query<Collection>(ent => ent.Id == guid).FirstOrDefault();
             if (entity != null)
@@ -64,7 +64,7 @@ public class TableService : ITableService
             Id = Guid.NewGuid(),
             Description = collection.Description,
             Name = collection.Name,
-            ImageUrl = collection.ImageUrl,
+            CollectionImage = collection.CollectionImage,
             OwnerId = collection.OwnerId,
             Quantity = collection.Quantity,
             PartitionKey = collection.OwnerId,

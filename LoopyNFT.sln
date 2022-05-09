@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopyNFT.WebApp", "src\LoopyNFT.WebApp\LoopyNFT.WebApp.csproj", "{15147C14-1E68-4D5B-920F-FC476AAEF49D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoopyNFT.API", "src\LoopyNFT.API\LoopyNFT.API.csproj", "{F9D58B58-62EE-4616-865F-5CEEBFC6F8E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoopyNFT.API", "src\LoopyNFT.API\LoopyNFT.API.csproj", "{F9D58B58-62EE-4616-865F-5CEEBFC6F8E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

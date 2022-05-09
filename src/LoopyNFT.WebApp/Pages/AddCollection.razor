@@ -15,7 +15,7 @@
                     <MudNumericField  Label="Quantity" Variant="Variant.Text" Min="0" Max="1000" Class="mt-3"
                                 @bind-Value="model.Quantity" For="@(() => model.Quantity)" />
                     <MudTextField Label="IPFS url" HelperText="Insert your image url here"
-                                @bind-Value="model.ImageUrl" For="@(() => model.ImageUrl)"/>
+                                @bind-Value="model.CollectionImage" For="@(() => model.CollectionImage)"/>
                 </MudCardContent>
                 <MudCardActions>
                     <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>

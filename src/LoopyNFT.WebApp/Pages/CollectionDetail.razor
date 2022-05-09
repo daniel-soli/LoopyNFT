@@ -1,0 +1,11 @@
+﻿@page "/Collections/{CollectionId}"
+
+<h3>CollectionDetail</h3>
+
+@if (Collection != null)
+{
+    <MudText>@Collection.Name</MudText>
+    <MudText>@Collection.Description</MudText>
+    <MudText>@Collection.OwnerId</MudText>
+}
+

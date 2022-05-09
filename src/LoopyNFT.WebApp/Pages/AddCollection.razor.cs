@@ -26,7 +26,7 @@ public partial class AddCollection : ComponentBase
         model = new()
         {
             Description = "",
-            ImageUrl = "",
+            CollectionImage = "",
             Name = "",
             OwnerId = "",
             Quantity = 1
